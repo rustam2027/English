@@ -1,5 +1,6 @@
 
 #import "@local/touying:0.8.0": *
+// #import "@preview/touying:0.8.0": *
 #import themes.simple: *
 #import "@preview/fletcher:0.5.8" as fletcher: node, edge
 #import "@preview/fletcher:0.5.8" as fletcher: diagram
@@ -163,9 +164,9 @@ Amount of memory your computer has:
 
 #pause
 
-To make the program thinks that you computer has $infinity$ memory
+To make the program think that your computer has $infinity$ memory
 
-== What manual memory managment costs
+== What manual memory management costs
 
 
 #place(left + horizon)[
@@ -181,7 +182,7 @@ To make the program thinks that you computer has $infinity$ memory
     only(3)[
       ```C
       ...
-      pin1printf("%d, p->x);pin2
+      pin1printf("%d", p->x);pin2
       ```
     ]
   }
@@ -190,7 +191,7 @@ To make the program thinks that you computer has $infinity$ memory
     It is called *leak*
   ]
   #only(3)[
-    It is called *dangling pointer*
+    This is called a *dangling pointer*
   ]
 ]
 
@@ -447,7 +448,7 @@ To make the program thinks that you computer has $infinity$ memory
       
     })
   ]
-#place(bottom + left)[\* If A points to B that means that object A has pointer to B]
+#place(bottom + left)[\* An arrow from A to B means that object A holds a pointer to B]
 ])
 
 == Sweep and compact
@@ -585,6 +586,31 @@ To make the program thinks that you computer has $infinity$ memory
   ]
 ])
 
-== Memory isn't the only resource
+== The cost of automation
 
-GC manages *only* memory, fiel you have to close yourself
+We *pay* for convenience. GC needs to *"Stop the World"*
+
+#pause
+
+- The pause can be noticeable in game or in interface.
+
+#pause
+
+- Some GCs split the pause into smaller ones or run concurrently.
+
+#pause
+
+- But either way, GC still costs *CPU time and memory*.
+
+== Takeaways
+
+#v(1fr)
+1. The GC makes your program *think memory is $infinity$*. 
+#pause
+#v(.5fr)
+2. Garbage is an object that is *not reachable from the roots*.
+#pause
+#v(.5fr)
+3. GC might be fast but it *still uses your computer*.
+#v(1fr)
+
